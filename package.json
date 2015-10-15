@@ -1,0 +1,24 @@
+{
+  "name": "generator-martin-web",
+  "version": "0.1.0",
+  "description": "A simple web app generator",
+  "files": [
+    "app"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MartinDelille/generator-martin-web.git"
+  },
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Martin Delille",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MartinDelille/generator-martin-web/issues"
+  },
+  "homepage": "https://github.com/MartinDelille/generator-martin-web#readme",
+  "dependencies": {
+    "yeoman-generator": "^0.20.3"
+  }
+}
