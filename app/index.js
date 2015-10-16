@@ -1,10 +1,24 @@
+var slug = require('slug');
 var generators = require('yeoman-generator');
 
 module.exports = generators.Base.extend({
-  method1: function() {
-    console.log('method 1 just ran');
+  writing: function() {
+    this.fs.copyTpl(
+        this.templatePath('_package.json'),
+        this.destinationPath('package.json'),
+        { appname: slug(this.appname) }
+        );
+    this.fs.copyTpl(
+        this.templatePath('Gruntfile.js'),
+        this.destinationPath('Gruntfile.js')
+        );
+    this.fs.copyTpl(
+        this.templatePath('index.html'),
+        this.destinationPath('index.html'),
+        { appname: slug(this.appname) }
+        );
   },
-  method2: function() {
-    console.log('method 2 just ran');
+  install: function() {
+    this.npmInstall();
   }
 });

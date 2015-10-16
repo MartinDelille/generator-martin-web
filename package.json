@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MartinDelille/generator-martin-web#readme",
   "dependencies": {
+    "slug": "^0.9.1",
     "yeoman-generator": "^0.20.3"
   }
 }
