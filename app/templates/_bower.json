@@ -1,0 +1,8 @@
+{
+  "name": "<%= appname %>",
+  "description": "A simple web app",
+  "authors": [
+    "Martin Delille (martin@phonations.com)"
+  ],
+  "license": "ISC"
+}

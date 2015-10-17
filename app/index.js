@@ -9,6 +9,11 @@ module.exports = generators.Base.extend({
         { appname: slug(this.appname) }
         );
     this.fs.copyTpl(
+        this.templatePath('_bower.json'),
+        this.destinationPath('bower.json'),
+        { appname: slug(this.appname) }
+        );
+    this.fs.copyTpl(
         this.templatePath('Gruntfile.js'),
         this.destinationPath('Gruntfile.js')
         );
