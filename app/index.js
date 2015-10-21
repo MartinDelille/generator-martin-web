@@ -22,6 +22,14 @@ module.exports = generators.Base.extend({
         this.destinationPath('index.html'),
         { appname: slug(this.appname) }
         );
+    this.fs.copyTpl(
+        this.templatePath('js/app.js'),
+        this.destinationPath('js/app.js')
+        );
+    this.fs.copyTpl(
+        this.templatePath('css/app.css'),
+        this.destinationPath('css/app.css')
+        );
   },
   install: function() {
     this.npmInstall();
