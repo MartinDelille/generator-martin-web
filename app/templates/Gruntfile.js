@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['connect:livereload', 'watch']);
+  grunt.registerTask('serve', ['connect:livereload', 'watch']);
 
   grunt.initConfig({
     connect: {
@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      files: ['*.html', '*.js', '*.css'],
+      files: ['*.html', 'js/*.js', 'css/*.css'],
       options: {
         livereload: true,
       },
