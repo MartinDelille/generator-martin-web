@@ -2,8 +2,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-wiredep');
 
-  grunt.registerTask('serve', ['connect:livereload', 'watch']);
+  grunt.registerTask('serve', ['wiredep', 'connect:livereload', 'watch']);
 
   grunt.initConfig({
     connect: {
@@ -20,6 +21,12 @@ module.exports = function(grunt) {
       options: {
         livereload: true,
       },
+    },
+
+    wiredep: {
+      all: {
+        src: ['index.html']
+      }
     }
   });
 };
