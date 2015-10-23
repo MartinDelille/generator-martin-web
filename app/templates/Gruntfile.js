@@ -4,9 +4,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-htmlhint');
   grunt.loadNpmTasks('grunt-bootlint');
 
-  grunt.registerTask('serve', ['wiredep', 'jshint', 'bootlint', 'connect:livereload', 'watch']);
+  grunt.registerTask('serve', ['wiredep', 'jshint', 'htmlhint', 'bootlint', 'connect:livereload', 'watch']);
 
   grunt.initConfig({
     connect: {
@@ -25,7 +26,7 @@ module.exports = function(grunt) {
       },
       html: {
         files: ['*.html'],
-        tasks: ['bootlint']
+        tasks: ['htmlhint', 'bootlint']
       },
       js: {
         files: ['Gruntfile.js', 'js/*.js']
@@ -46,6 +47,15 @@ module.exports = function(grunt) {
 
     jshint: {
       all: ['Gruntfile.js', 'js/*.js']
+    },
+
+    htmlhint: {
+      all: {
+        options: {
+          "tag-pair": true
+        },
+        src: ['*.html']
+      }
     },
 
     bootlint: {
