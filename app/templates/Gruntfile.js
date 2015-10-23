@@ -9,12 +9,15 @@ module.exports = function(grunt) {
 
   grunt.registerTask('serve', ['wiredep', 'jshint', 'htmlhint', 'bootlint', 'connect:livereload', 'watch']);
 
+  var port = 9000;
+
   grunt.initConfig({
     connect: {
       livereload: {
         options: {
+          port: port,
           open: true,
-          livereload: true
+          livereload: port + 1
         }
       }
     },
@@ -35,7 +38,7 @@ module.exports = function(grunt) {
         files: ['css/*.css']
       },
       options: {
-        livereload: true,
+        livereload: port + 1,
       },
     },
 
