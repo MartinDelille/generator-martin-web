@@ -19,6 +19,10 @@ module.exports = function(grunt) {
     },
 
     watch: {
+      bower: {
+        files: ['bower.json'],
+        tasks: ['wiredep']
+      },
       html: {
         files: ['*.html'],
         tasks: ['bootlint']
