@@ -3,8 +3,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-wiredep');
+  grunt.loadNpmTasks('grunt-bootlint');
 
-  grunt.registerTask('serve', ['wiredep', 'connect:livereload', 'watch']);
+  grunt.registerTask('serve', ['wiredep', 'bootlint', 'connect:livereload', 'watch']);
 
   grunt.initConfig({
     connect: {
@@ -17,7 +18,16 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      files: ['*.html', 'js/*.js', 'css/*.css'],
+      html: {
+        files: ['*.html'],
+        tasks: ['bootlint']
+      },
+      js: {
+        files: ['Gruntfile.js', 'js/*.js']
+      },
+      css: {
+        files: ['css/*.css']
+      },
       options: {
         livereload: true,
       },
@@ -27,6 +37,13 @@ module.exports = function(grunt) {
       all: {
         src: ['index.html']
       }
+    },
+
+    bootlint: {
+      options: {
+        stoponerror: false,
+      },
+      files: ['*.html']
     }
   });
 };
