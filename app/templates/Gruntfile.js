@@ -5,9 +5,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-htmlhint');
+  grunt.loadNpmTasks('grunt-html');
   grunt.loadNpmTasks('grunt-bootlint');
 
-  grunt.registerTask('serve', ['wiredep', 'jshint', 'htmlhint', 'bootlint', 'connect:livereload', 'watch']);
+  grunt.registerTask('serve', ['wiredep', 'jshint', 'htmlhint', 'htmllint', 'bootlint', 'connect:livereload', 'watch']);
 
   var port = 9000;
 
@@ -29,7 +30,7 @@ module.exports = function(grunt) {
       },
       html: {
         files: ['*.html'],
-        tasks: ['htmlhint', 'bootlint']
+        tasks: ['htmlhint', 'htmllint', 'bootlint']
       },
       js: {
         files: ['Gruntfile.js', 'js/*.js']
@@ -56,6 +57,15 @@ module.exports = function(grunt) {
       all: {
         options: {
           "tag-pair": true
+        },
+        src: ['*.html']
+      }
+    },
+
+    htmllint: {
+      all: {
+        options: {
+          force: true
         },
         src: ['*.html']
       }
