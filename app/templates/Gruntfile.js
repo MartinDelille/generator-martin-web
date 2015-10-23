@@ -34,7 +34,8 @@ module.exports = function(grunt) {
         tasks: ['htmlhint', 'htmllint', 'bootlint']
       },
       js: {
-        files: ['Gruntfile.js', 'js/*.js']
+        files: ['Gruntfile.js', 'js/*.js'],
+        tasks: ['jshint']
       },
       css: {
         files: ['css/*.css'],
@@ -52,6 +53,9 @@ module.exports = function(grunt) {
     },
 
     jshint: {
+      options: {
+        force: true
+      },
       all: ['Gruntfile.js', 'js/*.js']
     },
 
