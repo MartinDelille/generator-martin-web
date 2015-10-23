@@ -6,9 +6,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-htmlhint');
   grunt.loadNpmTasks('grunt-html');
+  grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-bootlint');
 
-  grunt.registerTask('serve', ['wiredep', 'jshint', 'htmlhint', 'htmllint', 'bootlint', 'connect:livereload', 'watch']);
+  grunt.registerTask('serve', ['wiredep', 'jshint', 'htmlhint', 'htmllint', 'csslint', 'bootlint', 'connect:livereload', 'watch']);
 
   var port = 9000;
 
@@ -36,7 +37,8 @@ module.exports = function(grunt) {
         files: ['Gruntfile.js', 'js/*.js']
       },
       css: {
-        files: ['css/*.css']
+        files: ['css/*.css'],
+        tasks: ['csslint']
       },
       options: {
         livereload: port + 1,
@@ -68,6 +70,12 @@ module.exports = function(grunt) {
           force: true
         },
         src: ['*.html']
+      }
+    },
+
+    csslint: {
+      all: {
+        src: ['css/*.css']
       }
     },
 
