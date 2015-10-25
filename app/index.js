@@ -34,6 +34,19 @@ module.exports = generators.Base.extend({
         this.templatePath('css/app.css'),
         this.destinationPath('css/app.css')
         );
+    this.fs.copyTpl(
+        this.templatePath('wdio.conf.js'),
+        this.destinationPath('wdio.conf.js')
+        );
+    this.fs.copyTpl(
+        this.templatePath('features/program.feature'),
+        this.destinationPath('features/program.feature'),
+        { appname: slug(this.appname) }
+        );
+    this.fs.copyTpl(
+        this.templatePath('features/program_steps.js'),
+        this.destinationPath('features/program_steps.js')
+        );
   },
   install: function() {
     this.npmInstall();
