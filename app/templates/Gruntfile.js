@@ -10,9 +10,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bootlint');
   grunt.loadNpmTasks('grunt-contrib-jade');
 
-  grunt.registerTask('serve', ['wiredep', 'jshint', 'jade', 'htmlhint', 'htmllint', 'csslint', 'bootlint', 'connect:livereload', 'watch']);
+  grunt.registerTask('build', ['wiredep', 'jade']);
+  grunt.registerTask('lint', ['jshint', 'htmlhint', 'htmllint', 'csslint', 'bootlint']);
+  grunt.registerTask('serve', ['build', 'lint', 'connect:livereload', 'watch']);
+  grunt.registerTask('test', ['build', 'lint', 'connect:test']);
 
   var port = 9000;
+  var jsFiles = ['Gruntfile.js', 'js/*.js'];
+  var htmlFiles = ['*.html'];
+  var cssFiles = ['css/*.css'];
 
   grunt.initConfig({
     connect: {
@@ -21,6 +27,11 @@ module.exports = function(grunt) {
           port: port,
           open: true,
           livereload: port + 1
+        }
+      },
+      test: {
+        options: {
+          port: port
         }
       }
     },
@@ -31,11 +42,11 @@ module.exports = function(grunt) {
         tasks: ['wiredep']
       },
       html: {
-        files: ['*.html'],
+        files: htmlFiles,
         tasks: ['htmlhint', 'htmllint', 'bootlint']
       },
       js: {
-        files: ['Gruntfile.js', 'js/*.js'],
+        files: jsFiles,
         tasks: ['jshint']
       },
       css: {
@@ -61,10 +72,7 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      options: {
-        force: true
-      },
-      all: ['Gruntfile.js', 'js/*.js']
+      all: jsFiles
     },
 
     htmlhint: {
@@ -72,30 +80,20 @@ module.exports = function(grunt) {
         options: {
           "tag-pair": true
         },
-        src: ['*.html']
+        src: htmlFiles
       }
     },
 
     htmllint: {
-      all: {
-        options: {
-          force: true
-        },
-        src: ['*.html']
-      }
+      all: htmlFiles
     },
 
     csslint: {
-      all: {
-        src: ['css/*.css']
-      }
+      all: cssFiles
     },
 
     bootlint: {
-      options: {
-        stoponerror: false,
-      },
-      files: ['*.html']
+      src: htmlFiles
     },
 
     jade: {
