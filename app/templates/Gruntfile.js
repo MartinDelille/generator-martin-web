@@ -8,8 +8,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-html');
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-bootlint');
+  grunt.loadNpmTasks('grunt-contrib-jade');
 
-  grunt.registerTask('serve', ['wiredep', 'jshint', 'htmlhint', 'htmllint', 'csslint', 'bootlint', 'connect:livereload', 'watch']);
+  grunt.registerTask('serve', ['wiredep', 'jshint', 'jade', 'htmlhint', 'htmllint', 'csslint', 'bootlint', 'connect:livereload', 'watch']);
 
   var port = 9000;
 
@@ -41,6 +42,10 @@ module.exports = function(grunt) {
         files: ['css/*.css'],
         tasks: ['csslint']
       },
+      jade: {
+        files: ['*.jade'],
+        tasks: ['jade']
+      },
       options: {
         livereload: port + 1,
       },
@@ -48,7 +53,10 @@ module.exports = function(grunt) {
 
     wiredep: {
       all: {
-        src: ['index.html']
+        src: [
+          'index.html',
+          'index.jade'
+        ]
       }
     },
 
@@ -88,6 +96,17 @@ module.exports = function(grunt) {
         stoponerror: false,
       },
       files: ['*.html']
+    },
+
+    jade: {
+      all: {
+        options: {
+          pretty: true
+        },
+        files: {
+          'index.html': 'index.jade'
+        }
+      }
     }
   });
 };

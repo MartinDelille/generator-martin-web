@@ -22,8 +22,8 @@ module.exports = generators.Base.extend({
         this.destinationPath('Gruntfile.js')
         );
     this.fs.copyTpl(
-        this.templatePath('index.html'),
-        this.destinationPath('index.html'),
+        this.templatePath('index.jade'),
+        this.destinationPath('index.jade'),
         { appname: slug(this.appname) }
         );
     this.fs.copyTpl(
