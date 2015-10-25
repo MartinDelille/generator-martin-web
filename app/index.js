@@ -47,6 +47,10 @@ module.exports = generators.Base.extend({
         this.templatePath('features/program_steps.js'),
         this.destinationPath('features/program_steps.js')
         );
+    this.fs.copyTpl(
+        this.templatePath('.travis.yml'),
+        this.destinationPath('.travis.yml')
+        );
   },
   install: function() {
     this.npmInstall();
